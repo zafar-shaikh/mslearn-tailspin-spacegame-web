@@ -50,6 +50,13 @@ steps:
     projects: '**/*.csproj'
     
     
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: '**/TEST-RESULTS.xml'
+    
+    
 - task: DotNetCoreCLI@2
   displayName: 'Publish the project - Release'
   inputs:
